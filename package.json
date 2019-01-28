@@ -1,0 +1,20 @@
+{
+  "name": "static_gen",
+  "version": "1.0.0",
+  "description": "A stactic website generator to produce html from ejs files",
+  "main": "generator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pstringe/static_gen.git"
+  },
+  "author": "pstringe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pstringe/static_gen/issues"
+  },
+  "homepage": "https://github.com/pstringe/static_gen#readme"
+  "build": "node ./scripts/build"
+}
