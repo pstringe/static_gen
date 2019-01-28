@@ -6,7 +6,7 @@
 //   By: pstringe <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2019/01/27 22:09:07 by pstringe          #+#    #+#             //
-//   Updated: 2019/01/27 22:46:46 by pstringe         ###   ########.fr       //
+//   Updated: 2019/01/27 23:38:24 by pstringe         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -20,7 +20,7 @@ const	path = require('path');
 
 const	{ promisify } = require('util');
 const 	ejsRenderFile = promisify(require('ejs').renderFile);
-const	globP = promisisfy(require('glob'));
+const	globP = promisify(require('glob'));
 
 /*
 ** not sure where this config file is from 
@@ -41,7 +41,7 @@ fse.copy(`${srcPath}/assets`, `${distPath}/assets`);
  ** unfamiliar with doubl asterisk notation, I think it's some kind of wildcard
  ** not sure why we need two
 */
-globeP('**/*.ejs', { cwd: `${srcPath}/pages` }).then((then) => {
+globP('**/*.ejs', { cwd: `${srcPath}/pages` }).then((files) => {
 	files.forEach((file) => {
 		const fileData = path.parse(file);
 		/*
@@ -57,10 +57,10 @@ globeP('**/*.ejs', { cwd: `${srcPath}/pages` }).then((then) => {
 			return ejsRenderFile(`${srcPath}/pages/${file}`, Object.assign({}, config));
 		}).then((pageContents) => {
 			// render layout along with page contents
-			return ejsRenderFile(`$srcPath/layout.ejs`, Object.assign({}, config, { body: pageContents }));
+			return ejsRenderFile(`${srcPath}/layout.ejs`, Object.assign({}, config, { body: pageContents }));
 		}).then((layoutContent) => {
 			//save html file
-			fse.writeFile(`${ destPath }/${fileData.name}.html`, layoutContent);
+			fse.writeFile(`${destPath}/${fileData.name}.html`, layoutContent);
 		}).catch((err) => { 
 			console.error(err); 
 		});
